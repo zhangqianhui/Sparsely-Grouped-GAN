@@ -9,7 +9,7 @@ class Config:
 
     @property
     def data_dir(self):
-        data_dir = os.path.join(self.base_dir, '/home/wangbin/data/')
+        data_dir = os.path.join(self.base_dir, '/home/?/data/')
         if not os.path.exists(data_dir):
             raise ValueError('Please specify a data dir.')
         return data_dir
