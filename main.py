@@ -15,7 +15,7 @@ if __name__ == "__main__":
                       model_path= config.model_path, data_ob= m_ob,
                       sample_path= config.sample_path , log_dir= config.exp_dir,
                       learning_rate= FLAGS.learn_rate, is_load_= FLAGS.is_load, use_sp=FLAGS.use_sp,
-                      lam_recon= FLAGS.lam_recon, range_attri= FLAGS.range_attri, beta1= FLAGS.beta1, beta2= FLAGS.beta2)
+                      lam_recon= FLAGS.lam_recon, lam_gp= FLAGS.lam_gp, range_attri= FLAGS.range_attri, beta1= FLAGS.beta1, beta2= FLAGS.beta2)
 
     if config.OPER_FLAG == 0:
 
@@ -25,7 +25,7 @@ if __name__ == "__main__":
     if config.OPER_FLAG == 1:
 
         sg_gan.build_model_GAN()
-        sg_gan.test()
+        sg_gan.test(test_step=FLAGS.test_step)
 
 
 

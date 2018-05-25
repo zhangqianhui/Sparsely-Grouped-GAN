@@ -64,6 +64,7 @@ def merge(images, size):
             img[j * h:j * h + h, i * w: i * w + w, :] = image
 
     else:
+
         h, w = images.shape[1], images.shape[2]
         img = np.zeros((h * size[0], w * size[1], 3))
         for idx, image in enumerate(images):
@@ -130,18 +131,18 @@ class CelebA(object):
         self.image_size = image_size
         self.sp_type = sp_type
         self.train_data_list, self.train_lab_list1, self.train_lab_list2, self.train_lab_list3, self.train_lab_list4, \
-        self.label_mask_1, self.label_mask_2, self.label_mask_3, self.label_mask_4, self.label_mask_hair3  = self.load_celebA(image_path)
+        self.label_mask_1, self.label_mask_2, self.label_mask_hair  = self.load_celebA(image_path)
         self.test_data_list, self.test_lab_list1, self.test_lab_list2, self.test_lab_list3, self.test_lab_list4, self.test_mask_hair = self.load_test_celebA(image_path)
         self.test_data_list_forhair, self.test_lab_list_forhair = self.load_testforhair_celebA(image_path)
 
     def load_celebA(self, image_path):
 
         # get the list of image path
-        images_list, images_label1, images_label2, images_label3, images_label4, label_mask_hair3 = read_image_list_file(image_path, is_test=False)
+        images_list, images_label1, images_label2, images_label3, images_label4, label_mask_hair = read_image_list_file(image_path, is_test=False)
+
         label_mask_1 = np.zeros(shape=[len(images_list)])
+        #for attribute hair color
         label_mask_2 = np.zeros(shape=[len(images_list)])
-        label_mask_3 = np.zeros(shape=[len(images_list)])
-        label_mask_4 = np.zeros(shape=[len(images_list)])
 
         flag = self.sp_type
         if flag == 0:
@@ -163,9 +164,7 @@ class CelebA(object):
             repeat = 50
 
         label_mask_1[0: label_data_num] = 1
-        label_mask_2[0: label_data_num] = 1
-        label_mask_3[0: label_data_num_for_hair] = 1
-        label_mask_4[0: label_data_num] = 1
+        label_mask_2[0: label_data_num_for_hair] = 1
 
         #aug data (0) for all
         #aug data (10) for 10000
@@ -180,9 +179,8 @@ class CelebA(object):
 
             label_mask_1 = np.concatenate((label_mask_1, label_mask_1[0:label_data_num_for_hair]))
             label_mask_2 = np.concatenate((label_mask_2, label_mask_2[0:label_data_num_for_hair]))
-            label_mask_3 = np.concatenate((label_mask_3, label_mask_3[0:label_data_num_for_hair]))
-            label_mask_4 = np.concatenate((label_mask_4, label_mask_4[0:label_data_num_for_hair]))
-            label_mask_hair3 = np.concatenate((label_mask_hair3, label_mask_hair3[0:label_data_num_for_hair]))
+
+            label_mask_hair = np.concatenate((label_mask_hair, label_mask_hair[0:label_data_num_for_hair]))
 
         images_onehot_label1 = np.zeros((len(images_label1), 2), dtype=np.float)
         for i, label in enumerate(images_label1):
@@ -201,7 +199,7 @@ class CelebA(object):
             images_onehot_label4[i, int(images_label4[i])] = 1.0
 
         return np.array(images_list), images_onehot_label1, images_onehot_label2, images_onehot_label3, images_onehot_label4 \
-            , label_mask_1, label_mask_2, label_mask_3, label_mask_4, np.array(label_mask_hair3)
+            , label_mask_1, label_mask_2, np.array(label_mask_hair)
 
     def load_test_celebA(self, image_path):
 
@@ -237,9 +235,7 @@ class CelebA(object):
 
             self.label_mask_1 = self.label_mask_1[perm]
             self.label_mask_2 = self.label_mask_2[perm]
-            self.label_mask_3 = self.label_mask_3[perm]
-            self.label_mask_4 = self.label_mask_4[perm]
-            self.label_mask_hair3 = self.label_mask_hair3[perm]
+            self.label_mask_hair = self.label_mask_hair[perm]
 
         return self.train_data_list[(batch_num % ro_num) * batch_size: (batch_num % ro_num + 1) * batch_size], \
                self.train_lab_list1[(batch_num % ro_num) * batch_size: (batch_num % ro_num + 1) * batch_size], \
@@ -248,9 +244,7 @@ class CelebA(object):
                self.train_lab_list4[(batch_num % ro_num) * batch_size: (batch_num % ro_num + 1) * batch_size], \
                self.label_mask_1[(batch_num % ro_num) * batch_size: (batch_num % ro_num + 1) * batch_size], \
                self.label_mask_2[(batch_num % ro_num) * batch_size: (batch_num % ro_num + 1) * batch_size], \
-               self.label_mask_3[(batch_num % ro_num) * batch_size: (batch_num % ro_num + 1) * batch_size], \
-               self.label_mask_4[(batch_num % ro_num) * batch_size: (batch_num % ro_num + 1) * batch_size], \
-               self.label_mask_hair3[(batch_num % ro_num) * batch_size: (batch_num % ro_num + 1) * batch_size]
+               self.label_mask_hair[(batch_num % ro_num) * batch_size: (batch_num % ro_num + 1) * batch_size]
 
     def getTestNextBatch(self, batch_num=0, batch_size=128, is_shuffle=True):
 
@@ -400,6 +394,7 @@ def read_image_list_file2(category, is_test):
 
     end_num = 0
     if is_test == False:
+
         start_num = 5001
         path = category + "celebA/"
 
@@ -448,5 +443,6 @@ def read_image_list_file2(category, is_test):
 
     min_n = np.min([len(list_image_1), len(list_image_2)])
     lines.close()
+
     return list_image_1[0:min_n] + list_image_2[0:min_n]\
         , list_label1[0: min_n] + list_label2[0: min_n]

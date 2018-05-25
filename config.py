@@ -49,21 +49,23 @@ class Config:
         flags.DEFINE_integer("learn_rate", 0.0001, "learning rate for g and d")
         flags.DEFINE_integer("image_size", 128, "size of image for training and testing")
         flags.DEFINE_integer("max_iters", 40000, "number of total iterations for G")
-        flags.DEFINE_integer("beta1", 0.5, "beta1 of Adam")
-        flags.DEFINE_integer("beta2", 0.999, "beta2 of Adam")
+        flags.DEFINE_integer("beta1", 0.5, "beta1 of Adam optimizer")
+        flags.DEFINE_integer("beta2", 0.999, "beta2 of Adam optimizer")
+        flags.DEFINE_integer("lam_recon", 10, "weight for recon_loss")
+        flags.DEFINE_integer("lam_gp", 10, "weight for gradient penalty")
         flags.DEFINE_integer("test_step", 40000, "step in test")
         flags.DEFINE_integer("range_attri", 2, "range of attribute value")
         flags.DEFINE_integer("sp_type", 0, "type of sparsely grouped")
         flags.DEFINE_boolean("is_load", False, "whether loading the pretraining model")
         flags.DEFINE_boolean("use_sp", False, "whether using spectral normalization")
-        flags.DEFINE_integer("lam_recon", 10, "weight for recon_loss")
+
 
         FLAG = flags.FLAGS
         return FLAG
 
     OPER_FLAG = 0
     OPER_NAME = "experiment_5_23"
-    gpu_id = 15
+    gpu_id = 14
     image_size = 128
     channel = 3
     hwc = [image_size, image_size, channel]
