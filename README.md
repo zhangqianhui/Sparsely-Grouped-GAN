@@ -26,6 +26,7 @@ and unzip CelebA into a directory.
 
  Just like
  
+ ~~~
 ---------------------------------------------
 
 The training data folder should look like : 
@@ -43,6 +44,7 @@ The training data folder should look like :
 list_attr_celeba.txt
 
 ---------------------------------------------
+~~~
 
 - Train the model using the default parameter
 ```bash
