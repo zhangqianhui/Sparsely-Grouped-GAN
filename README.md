@@ -36,9 +36,9 @@ To train StarGAN on CelebA, run the training script below. See [here](https://gi
 ## Experiment Result 
 
 ### For balanced Attributes
-<p align="center"><img width="100%" src="img/exper_1.PNG" /></p>
+<p align="center"><img width="100%" src="img/exper_1.JPG" /></p>
 ### For unbalanced Attribute
-<p align="center"><img width="100%" src="img/exper_2.PNG" /></p>
+<p align="center"><img width="100%" src="img/exper_2.JPG" /></p>
 
 ## Reference code
 
