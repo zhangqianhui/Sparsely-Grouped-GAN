@@ -12,8 +12,6 @@ Introduction: Recently, Image-to-Image Translation (IIT) has made great progress
 * [Python 2.7](https://www.python.org/download/releases/2.7/)
 * [Tensorflow 1.4+](https://github.com/tensorflow/tensorflow)
 
-<br/>
-
 ## Usage
 
 - Clone this repo:
@@ -24,7 +22,25 @@ cd SG_GAN_tensorflow
 - Download the CelebA dataset
 
 You can download the [CelebA dataset](https://www.dropbox.com/sh/8oqt9vytwxb3s4r/AAB06FXaQRUNtjW9ntaoPGvCa?dl=0) 
-and unzip CelebA into a directory. Noted that this directory don't contain the sub-directory.
+and unzip CelebA into a directory. 
+
+ Just like
+---------------------------------------------
+
+The training data folder should look like : 
+<train_data_root>
+                |--image1
+                |--image2
+                |--image3
+                |--image4...
+<test_data_root>
+                |--image1
+                |--image2
+                |--image3
+                |--image4...
+                
+list_attr_celeba.txt
+---------------------------------------------
 
 - Train the model using the default parameter
 ```bash
