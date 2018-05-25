@@ -43,6 +43,9 @@ To train StarGAN on CelebA, run the training script below. See [here](https://gi
 ## Reference code
 
 [StarGAN Pytorch](https://github.com/yunjey/StarGAN)
+
 [GeneGAN tensorflow](https://github.com/Prinsphield/GeneGAN)
+
 [DCGAN tensorflow](https://github.com/carpedm20/DCGAN-tensorflow)
+
 [Spectral Norm tensorflow](https://github.com/taki0112/Spectral_Normalization-Tensorflow)
