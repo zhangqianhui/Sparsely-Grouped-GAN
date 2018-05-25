@@ -16,28 +16,33 @@ Introduction: Recently, Image-to-Image Translation (IIT) has made great progress
 
 ## Usage
 
-### 1. Cloning the repository
+- Clone this repo:
 ```bash
-$ git clone https://github.com/yunjey/StarGAN.git
-$ cd StarGAN/
+git clone https://github.com/zhangqianhui/SG_GAN_tensorflow.git
+cd SG_GAN_tensorflow
 ```
+- Download the CelebA dataset
 
-### 2. Downloading the dataset
-To download the CelebA dataset:
+You can download the [CelebA dataset](https://www.dropbox.com/sh/8oqt9vytwxb3s4r/AAB06FXaQRUNtjW9ntaoPGvCa?dl=0) 
+and unzip CelebA into a directory. Noted that this directory don't contain the sub-directory.
+
+- Train the model using the default parameter
 ```bash
-$ bash download.sh celeba
+python main.py 
 ```
-
-To download the RaFD dataset, you must request access to the dataset from [the Radboud Faces Database website](http://www.socsci.ru.nl:8180/RaFD2/RaFD?p=main). Then, you need to create a folder structure as described [here](https://github.com/yunjey/StarGAN/blob/master/jpg/RaFD.md).
-
-### 3. Training
-To train StarGAN on CelebA, run the training script below. See [here](https://github.com/yunjey/StarGAN/blob/master/jpg/CelebA.md) for a list of selectable attributes in the CelebA dataset. If you change the `selected_attrs` argument, you should also change the `c_dim` argument accordingly.
+- Test the model by changing OPER_FLAG in config.py from 0 to 1.
+```bash
+python main.py 
+```
 
 ## Experiment Result 
 
 ### For balanced Attributes
+
 <p align="center"><img width="100%" src="img/exper_1.JPG" /></p>
+
 ### For unbalanced Attribute
+
 <p align="center"><img width="100%" src="img/exper_2.JPG" /></p>
 
 ## Reference code
