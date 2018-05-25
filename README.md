@@ -25,6 +25,7 @@ You can download the [CelebA dataset](https://www.dropbox.com/sh/8oqt9vytwxb3s4r
 and unzip CelebA into a directory. 
 
  Just like
+ 
 ---------------------------------------------
 
 The training data folder should look like : 
@@ -40,6 +41,7 @@ The training data folder should look like :
                 |--image4...
                 
 list_attr_celeba.txt
+
 ---------------------------------------------
 
 - Train the model using the default parameter
