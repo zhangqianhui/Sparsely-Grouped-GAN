@@ -3,6 +3,7 @@ from ops import conv2d, lrelu, instance_norm, Residual, de_conv
 from tensorflow.python.framework.ops import convert_to_tensor
 from utils import save_images, get_image
 import numpy as np
+import os
 
 class SG_GAN(object):
 
@@ -281,7 +282,7 @@ class SG_GAN(object):
 
             sess.run(init)
 
-            self.saver.restore(sess, self.sg_gan_model_path + str(test_step))
+            self.saver.restore(sess, os.path.join(self.sg_gan_model_path, 'model_{:06d}.ckpt'.format(test_step)))
             batch_num = len(self.data_ob.test_data_list) / self.batch_size
 
             for j in range(batch_num):
@@ -320,7 +321,6 @@ class SG_GAN(object):
 
             if self.is_load_:
                 self.saver.restore(sess, self.sg_gan_model_path + str(step))
-
             lr_decay = 1
             while step <= self.max_iters:
 
@@ -377,15 +377,14 @@ class SG_GAN(object):
                     save_images(output_concat, [output_concat.shape[0]/8, 8], '{}/{:02d}_output.jpg'.format(self.sample_path, step))
 
                 if np.mod(step, 2000) == 0 and step != 0:
-                    self.saver.save(sess, self.sg_gan_model_path + np.str(step))
+                    self.saver.save(sess, os.path.join(self.sg_gan_model_path, 'model_{:06d}.ckpt'.format(step)))
 
                 # Test
                 if np.mod(step, 1000) == 0:
                     self.test_class_accuracy(sess, self.data_ob.test_data_list, self.data_ob.test_data_list_forhair)
-
                 step += 1
 
-            save_path = self.saver.save(sess, self.sg_gan_model_path)
+            save_path = self.saver.save(sess, os.path.join(self.sg_gan_model_path, 'model_{:06d}.ckpt'.format(step)))
             print "Model saved in file: %s" % save_path
 
     def discriminate(self, x_var, reuse=False, use_sp=False):
@@ -508,7 +507,6 @@ class SG_GAN(object):
 
             g_deconv_8_1_x = tf.concat([g_deconv_8_1, x], axis=3)
             x_tilde8 = conv2d(g_deconv_8_1_x, output_dim=self.channel, k_w=7, k_h=7, d_h=1, d_w=1, name='gen_conv_8_2')
-
 
             return tf.nn.tanh(x_tilde1), tf.nn.tanh(x_tilde2), tf.nn.tanh(x_tilde3), \
                    tf.nn.tanh(x_tilde4), tf.nn.tanh(x_tilde5), tf.nn.tanh(x_tilde6), tf.nn.tanh(x_tilde7), tf.nn.tanh(x_tilde8)
