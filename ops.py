@@ -6,12 +6,12 @@ def log_sum_exp(x, axis=1):
     return m + tf.log(tf.reduce_sum(tf.exp(x - m), axis=axis))
 
 #the implements of leakyRelu
-def lrelu(x, alpha= 0.2, name="LeakyReLU"):
+def lrelu(x, alpha=0.2, name="LeakyReLU"):
     with tf.variable_scope(name):
         return tf.maximum(x , alpha*x)
 
 def conv2d(input_, output_dim,
-           k_h=5, k_w=5, d_h= 2, d_w=2, stddev=0.02, spectural_normed=False,
+           k_h=5, k_w=5, d_h=2, d_w=2, stddev=0.02, spectural_normed=False,
            name="conv2d", padding='SAME'):
 
     with tf.variable_scope(name):
@@ -126,7 +126,7 @@ def Residual(x, output_dims=256, kernel=3, strides=1, residual_name='resi'):
 def _l2normalize(v, eps=1e-12):
   return v / (tf.reduce_sum(v ** 2) ** 0.5 + eps)
 
-def spectral_norm(w, iteration= 1):
+def spectral_norm(w, iteration=1):
 
     w_shape = w.shape.as_list()
     w = tf.reshape(w, [-1, w_shape[-1]])

@@ -68,17 +68,17 @@ class SG_GAN(object):
 
         #Get the result of manipulating
         self.x_tilde_1_1, self.x_tilde_1_2, self.x_tilde_2_1, self.x_tilde_2_2, \
-            self.x_tilde_3_1, self.x_tilde_3_2, self.x_tilde_4_1, self.x_tilde_4_2 = self.encode_decode(self.images, False)
+            self.x_tilde_3_1, self.x_tilde_3_2, self.x_tilde_4_1, self.x_tilde_4_2 = self.encode_decode(self.images, reuse=False)
 
         #recon_loss
-        self.x_tilde_recon_1_1, _, _, _, _, _, _, _ = self.encode_decode(self.x_tilde_1_2, True)
-        _, self.x_tilde_recon_1_2, _, _, _, _, _, _ = self.encode_decode(self.x_tilde_1_1,True)
-        _, _, self.x_tilde_recon_2_1, _, _, _, _, _ = self.encode_decode(self.x_tilde_2_2, True)
-        _, _, _, self.x_tilde_recon_2_2, _, _, _, _ = self.encode_decode(self.x_tilde_2_1, True)
-        _, _, _, _, self.x_tilde_recon_3_1, _, _, _ = self.encode_decode(self.x_tilde_3_2, True)
-        _, _, _, _, _, self.x_tilde_recon_3_2, _, _ = self.encode_decode(self.x_tilde_3_1, True)
-        _, _, _, _, _, _, self.x_tilde_recon_4_1, _ = self.encode_decode(self.x_tilde_4_2, True)
-        _, _, _, _, _, _, _, self.x_tilde_recon_4_2 = self.encode_decode(self.x_tilde_4_1, True)
+        self.x_tilde_recon_1_1, _, _, _, _, _, _, _ = self.encode_decode(self.x_tilde_1_2, reuse=True)
+        _, self.x_tilde_recon_1_2, _, _, _, _, _, _ = self.encode_decode(self.x_tilde_1_1, reuse=True)
+        _, _, self.x_tilde_recon_2_1, _, _, _, _, _ = self.encode_decode(self.x_tilde_2_2, reuse=True)
+        _, _, _, self.x_tilde_recon_2_2, _, _, _, _ = self.encode_decode(self.x_tilde_2_1, reuse=True)
+        _, _, _, _, self.x_tilde_recon_3_1, _, _, _ = self.encode_decode(self.x_tilde_3_2, reuse=True)
+        _, _, _, _, _, self.x_tilde_recon_3_2, _, _ = self.encode_decode(self.x_tilde_3_1, reuse=True)
+        _, _, _, _, _, _, self.x_tilde_recon_4_1, _ = self.encode_decode(self.x_tilde_4_2, reuse=True)
+        _, _, _, _, _, _, _, self.x_tilde_recon_4_2 = self.encode_decode(self.x_tilde_4_1, reuse=True)
 
         self.recon_loss = self.recon_loss(tf.concat([self.x_tilde_1_1, self.x_tilde_1_2, self.x_tilde_2_1, self.x_tilde_2_2,
                                                      self.x_tilde_3_1, self.x_tilde_3_2, self.x_tilde_4_1, self.x_tilde_4_2], axis=3),
@@ -387,33 +387,33 @@ class SG_GAN(object):
             save_path = self.saver.save(sess, os.path.join(self.sg_gan_model_path, 'model_{:06d}.ckpt'.format(step)))
             print "Model saved in file: %s" % save_path
 
-    def discriminate(self, x_var, reuse=False, use_sp=False):
+    def discriminate(self, x_var, sn=64, reuse=False, use_sp=False):
 
         with tf.variable_scope("discriminator") as scope:
 
             if reuse == True:
                 scope.reuse_variables()
 
-            conv1= lrelu(conv2d(x_var, spectural_normed=use_sp, output_dim=64, name='dis_conv1'))
-            conv2= lrelu(conv2d(conv1, spectural_normed=use_sp, output_dim=128, name='dis_conv2'))
-            conv3= lrelu(conv2d(conv2, spectural_normed=use_sp, output_dim=256, name='dis_conv3'))
-            conv4 = lrelu(conv2d(conv3, spectural_normed=use_sp, output_dim=512, name='dis_conv4'))
-            conv5 = lrelu(conv2d(conv4, spectural_normed=use_sp, output_dim=512, name='dis_conv5'))
-            conv6 = lrelu(conv2d(conv5, spectural_normed=use_sp, output_dim=1024, name='dis_conv6'))
+            conv1= lrelu(conv2d(x_var, spectural_normed=use_sp, output_dim=sn, name='dis_conv1'))
+            conv2= lrelu(conv2d(conv1, spectural_normed=use_sp, output_dim=sn*2, name='dis_conv2'))
+            conv3= lrelu(conv2d(conv2, spectural_normed=use_sp, output_dim=sn*4, name='dis_conv3'))
+            conv4 = lrelu(conv2d(conv3, spectural_normed=use_sp, output_dim=sn*8, name='dis_conv4'))
+            conv5 = lrelu(conv2d(conv4, spectural_normed=use_sp, output_dim=sn*8, name='dis_conv5'))
+            conv6 = lrelu(conv2d(conv5, spectural_normed=use_sp, output_dim=sn*16, name='dis_conv6'))
 
             #for gender
-            class_logits_1 = conv2d(conv6, spectural_normed=use_sp, output_dim=self.range_attri, k_h=2,
-                                    k_w=2, d_w=1, d_h=1, padding='VALID', name='dis_conv7')
+            class_logits_1 = conv2d(conv6, spectural_normed=use_sp, output_dim=self.range_attri, k_h=conv6.shape[1],
+                                    k_w=conv6.shape[1], d_w=1, d_h=1, padding='VALID', name='dis_conv7')
             #for smile
-            class_logits_2 = conv2d(conv6, spectural_normed=use_sp, output_dim=self.range_attri, k_h=2,
-                                    k_w=2, d_w=1, d_h=1, padding='VALID', name='dis_conv8')
+            class_logits_2 = conv2d(conv6, spectural_normed=use_sp, output_dim=self.range_attri, k_h=conv6.shape[1],
+                                    k_w=conv6.shape[1], d_w=1, d_h=1, padding='VALID', name='dis_conv8')
 
             #for hair color
-            class_logits_3 = conv2d(conv6, spectural_normed=use_sp, output_dim=self.range_attri, k_h=2,
-                                    k_w=2, d_w=1, d_h=1, padding='VALID', name='dis_conv9')
+            class_logits_3 = conv2d(conv6, spectural_normed=use_sp, output_dim=self.range_attri, k_h=conv6.shape[1],
+                                    k_w=conv6.shape[1], d_w=1, d_h=1, padding='VALID', name='dis_conv9')
             # for lipsticks
-            class_logits_4 = conv2d(conv6, spectural_normed=use_sp, output_dim=self.range_attri, k_h=2,
-                                    k_w=2, d_w=1, d_h=1, padding='VALID', name='dis_conv10')
+            class_logits_4 = conv2d(conv6, spectural_normed=use_sp, output_dim=self.range_attri, k_h=conv6.shape[1],
+                                    k_w=conv6.shape[1], d_w=1, d_h=1, padding='VALID', name='dis_conv10')
 
             #PatchGAN
             gan_logits = conv2d(conv6, spectural_normed=use_sp, output_dim=1, k_h=1, k_w=1, d_w=1, d_h=1,
@@ -422,7 +422,9 @@ class SG_GAN(object):
             return tf.squeeze(class_logits_1), tf.squeeze(class_logits_2), tf.squeeze(class_logits_3), tf.squeeze(class_logits_4), \
                         tf.squeeze(gan_logits)
 
-    def encode_decode(self, x, reuse=False):
+    def encode_decode(self, x, sn=64, reuse=False):
+
+        print sn
 
         with tf.variable_scope("encode_decode") as scope:
 
@@ -430,11 +432,11 @@ class SG_GAN(object):
                 scope.reuse_variables()
 
             conv1 = tf.nn.relu(
-                instance_norm(conv2d(x, output_dim=64, k_w=7, k_h=7, d_w=1, d_h=1, name='e_c1'), scope='e_in1'))
+                instance_norm(conv2d(x, output_dim=sn, k_w=7, k_h=7, d_w=1, d_h=1, name='e_c1'), scope='e_in1'))
             conv2 = tf.nn.relu(
-                instance_norm(conv2d(conv1, output_dim=128, k_w=4, k_h=4, d_w=2, d_h=2, name='e_c2'), scope='e_in2'))
+                instance_norm(conv2d(conv1, output_dim=sn*2, k_w=4, k_h=4, d_w=2, d_h=2, name='e_c2'), scope='e_in2'))
             conv3 = tf.nn.relu(
-                instance_norm(conv2d(conv2, output_dim=256, k_w=4, k_h=4, d_w=2, d_h=2, name='e_c3'), scope='e_in3'))
+                instance_norm(conv2d(conv2, output_dim=sn*4, k_w=4, k_h=4, d_w=2, d_h=2, name='e_c3'), scope='e_in3'))
 
             r1 = Residual(conv3, residual_name='re_1')
             r2 = Residual(r1, residual_name='re_2')
@@ -444,69 +446,69 @@ class SG_GAN(object):
             r6 = Residual(r5, residual_name='re_6')
 
             g_deconv1 = tf.nn.relu(instance_norm(de_conv(r6, output_shape=[self.batch_size,
-                                                                           self.output_size/2, self.output_size/2, 128], name='gen_deconv1'), scope="gen_in"))
+                                                                           self.output_size/2, self.output_size/2, sn*2], name='gen_deconv1'), scope="gen_in"))
             # for 1
             g_deconv_1_1 = tf.nn.relu(instance_norm(de_conv(g_deconv1,
-                        output_shape=[self.batch_size, self.output_size, self.output_size, 64], name='g_deconv_1_1'), scope='gen_in_1_1'))
+                        output_shape=[self.batch_size, self.output_size, self.output_size, sn], name='g_deconv_1_1'), scope='gen_in_1_1'))
 
             #Refined Residual Image learning
-            g_deconv_1_1_x = tf.concat([g_deconv_1_1, x], axis=3)
-            x_tilde1 = conv2d(g_deconv_1_1_x, output_dim=self.channel, k_w=7, k_h=7, d_h=1, d_w=1, name='gen_conv_1_2')
+            #g_deconv_1_1_x = tf.concat([g_deconv_1_1, x], axis=3)
+            x_tilde1 = conv2d(g_deconv_1_1, output_dim=self.channel, k_w=7, k_h=7, d_h=1, d_w=1, name='gen_conv_1_2')
 
             # for 2
             g_deconv_2_1 = tf.nn.relu(instance_norm(de_conv(g_deconv1,
-                        output_shape=[self.batch_size, self.output_size, self.output_size, 64]
+                        output_shape=[self.batch_size, self.output_size, self.output_size, sn]
                                                             , name='g_deconv_2_1'), scope='gen_in_2_1'))
-            g_deconv_2_1_x = tf.concat([g_deconv_2_1, x], axis=3)
-            x_tilde2 = conv2d(g_deconv_2_1_x, output_dim=self.channel, k_w=7, k_h=7, d_h=1, d_w=1, name='gen_conv_2_2')
+            #g_deconv_2_1_x = tf.concat([g_deconv_2_1, x], axis=3)
+            x_tilde2 = conv2d(g_deconv_2_1, output_dim=self.channel, k_w=7, k_h=7, d_h=1, d_w=1, name='gen_conv_2_2')
 
             # for 3
             g_deconv_3_1 = tf.nn.relu(instance_norm(de_conv(g_deconv1, output_shape=[self.batch_size,
-                                            self.output_size, self.output_size, 64], name='gen_deconv3_1'), scope='gen_in_3_1'))
-            g_deconv_3_1_x = tf.concat([g_deconv_3_1, x], axis=3)
+                                            self.output_size, self.output_size, sn], name='gen_deconv3_1'), scope='gen_in_3_1'))
+            #g_deconv_3_1_x = tf.concat([g_deconv_3_1, x], axis=3)
 
-            g_deconv_3_2 = conv2d(g_deconv_3_1_x, output_dim=32, k_w=3, k_h=3, d_h=1, d_w=1,
+            g_deconv_3_2 = conv2d(g_deconv_3_1, output_dim=32, k_w=3, k_h=3, d_h=1, d_w=1,
                               name='gen_conv_3_2')
             x_tilde3 = conv2d(g_deconv_3_2, output_dim=3, k_h=3, k_w=3, d_h=1, d_w=1, name='gen_conv_3_3')
 
             # for 4
             g_deconv_4_1 = tf.nn.relu(instance_norm(de_conv(g_deconv1, output_shape=[self.batch_size,
-                                                                        self.output_size, self.output_size, 64], name='gen_deconv4_1'), scope='gen_in_4_1'))
-            g_deconv_4_1_x = tf.concat([g_deconv_4_1, x], axis=3)
-            g_deconv_4_2 = conv2d(g_deconv_4_1_x, output_dim=32, k_w=3, k_h=3, d_h=1, d_w=1,
+                                                                        self.output_size, self.output_size, sn], name='gen_deconv4_1'), scope='gen_in_4_1'))
+            #g_deconv_4_1_x = tf.concat([g_deconv_4_1, x], axis=3)
+            g_deconv_4_2 = conv2d(g_deconv_4_1, output_dim=32, k_w=3, k_h=3, d_h=1, d_w=1,
                               name='gen_conv_4_2')
             x_tilde4 = conv2d(g_deconv_4_2, output_dim=3, k_h=3, k_w=3, d_h=1, d_w=1, name='gen_conv_4_3')
 
             # for 5
             g_deconv_5_1 = tf.nn.relu(instance_norm(de_conv(g_deconv1, output_shape=[self.batch_size,
-                                                                        self.output_size, self.output_size, 64], name='gen_deconv5_1'), scope='gen_in_5_1'))
-            g_deconv_5_1_x = tf.concat([g_deconv_5_1, x], axis=3)
-            g_deconv_5_2 = conv2d(g_deconv_5_1_x, output_dim=32, k_w=3, k_h=3, d_h=1, d_w=1,
+                                                                        self.output_size, self.output_size, sn], name='gen_deconv5_1'), scope='gen_in_5_1'))
+            #g_deconv_5_1_x = tf.concat([g_deconv_5_1, x], axis=3)
+            g_deconv_5_2 = conv2d(g_deconv_5_1, output_dim=32, k_w=3, k_h=3, d_h=1, d_w=1,
                               name='gen_conv_5_2')
             x_tilde5 = conv2d(g_deconv_5_2, output_dim=3, k_h=3, k_w=3, d_h=1, d_w=1, name='gen_conv_5_3')
 
             # for 6
             g_deconv_6_1 = tf.nn.relu(instance_norm(de_conv(g_deconv1, output_shape=[self.batch_size,
-                                                                        self.output_size, self.output_size, 64], name='gen_deconv6_1'), scope='gen_in_6_1'))
-            g_deconv_6_1_x = tf.concat([g_deconv_6_1, x], axis=3)
-            g_deconv_6_2 = conv2d(g_deconv_6_1_x, output_dim=32, k_w=3, k_h=3, d_h=1, d_w=1,
+                                                                        self.output_size, self.output_size, sn], name='gen_deconv6_1'), scope='gen_in_6_1'))
+            #g_deconv_6_1_x = tf.concat([g_deconv_6_1, x], axis=3)
+            g_deconv_6_2 = conv2d(g_deconv_6_1, output_dim=32, k_w=3, k_h=3, d_h=1, d_w=1,
                               name='gen_conv_6_2')
             x_tilde6 = conv2d(g_deconv_6_2, output_dim=3, k_h=3, k_w=3, d_h=1, d_w=1, name='gen_conv_6_3')
 
             # for 7
             g_deconv_7_1 = tf.nn.relu(instance_norm(de_conv(g_deconv1,
-                        output_shape=[self.batch_size, self.output_size, self.output_size, 64], name='g_deconv_7_1'), scope='gen_in_7_1'))
+                        output_shape=[self.batch_size, self.output_size, self.output_size, sn], name='g_deconv_7_1'), scope='gen_in_7_1'))
 
-            g_deconv_7_1_x = tf.concat([g_deconv_7_1, x], axis=3)
-            x_tilde7 = conv2d(g_deconv_7_1_x, output_dim=self.channel, k_w=7, k_h=7, d_h=1, d_w=1, name='gen_conv_7_2')
+            #g_deconv_7_1_x = tf.concat([g_deconv_7_1, x], axis=3)
+            x_tilde7 = conv2d(g_deconv_7_1, output_dim=self.channel, k_w=7, k_h=7, d_h=1, d_w=1, name='gen_conv_7_2')
 
             # for 8
             g_deconv_8_1 = tf.nn.relu(instance_norm(de_conv(g_deconv1,
-                        output_shape=[self.batch_size, self.output_size, self.output_size, 64]
+                        output_shape=[self.batch_size, self.output_size, self.output_size, sn]
                                                             , name='g_deconv_8_1'), scope='gen_in_8_1'))
 
-            g_deconv_8_1_x = tf.concat([g_deconv_8_1, x], axis=3)
-            x_tilde8 = conv2d(g_deconv_8_1_x, output_dim=self.channel, k_w=7, k_h=7, d_h=1, d_w=1, name='gen_conv_8_2')
+            #g_deconv_8_1_x = tf.concat([g_deconv_8_1, x], axis=3)
+            x_tilde8 = conv2d(g_deconv_8_1, output_dim=self.channel, k_w=7, k_h=7, d_h=1, d_w=1, name='gen_conv_8_2')
 
             return tf.nn.tanh(x_tilde1), tf.nn.tanh(x_tilde2), tf.nn.tanh(x_tilde3), \
                    tf.nn.tanh(x_tilde4), tf.nn.tanh(x_tilde5), tf.nn.tanh(x_tilde6), tf.nn.tanh(x_tilde7), tf.nn.tanh(x_tilde8)

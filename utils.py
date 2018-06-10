@@ -7,7 +7,7 @@ import scipy.misc
 def mkdir_p(path):
     try:
         os.makedirs(path)
-    except OSError as exc:  # Python >2.5
+    except OSError as exc:
         if exc.errno == errno.EEXIST and os.path.isdir(path):
             pass
         else:
@@ -304,7 +304,7 @@ def read_image_list_file(category, is_test):
     else:
 
         start_num = 4
-        path = category + "celeba_test/"
+        path = category + "celebA/"
         end_num = 5001
 
     list_image = []
@@ -386,6 +386,7 @@ def read_image_list_file(category, is_test):
         li_num += 1
 
     lines.close()
+
     return list_image, list_label1, list_label2 \
         , list_label3, list_label4, label_mask_hair
 
@@ -401,7 +402,7 @@ def read_image_list_file2(category, is_test):
     else:
 
         start_num = 4
-        path = category + "celeba_test/"
+        path = category + "celebA/"
         end_num = 5001
 
     list_image_1 = []
