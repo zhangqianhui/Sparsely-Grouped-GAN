@@ -30,17 +30,12 @@ and unzip CelebA into a directory.
 ---------------------------------------------
 
 The training data folder should look like : 
-<train_data_root>
+<base_dir/celebA/>
                 |--image1
                 |--image2
                 |--image3
                 |--image4...
-<test_data_root>
-                |--image1
-                |--image2
-                |--image3
-                |--image4...
-                
+    
 list_attr_celeba.txt
 
 ---------------------------------------------
