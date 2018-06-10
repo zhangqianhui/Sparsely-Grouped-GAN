@@ -9,7 +9,7 @@ class Config:
 
     @property
     def data_dir(self):
-        data_dir = os.path.join(self.base_dir, '/home/?/data/')
+        data_dir = os.path.join(self.base_dir, '/mnt/sata/jichao/CelebA/')
         if not os.path.exists(data_dir):
             raise ValueError('Please specify a data dir.')
         return data_dir
@@ -59,13 +59,13 @@ class Config:
         flags.DEFINE_boolean("is_load", False, "whether loading the pretraining model")
         flags.DEFINE_boolean("use_sp", False, "whether using spectral normalization")
 
-
         FLAG = flags.FLAGS
         return FLAG
 
     OPER_FLAG = 0
-    OPER_NAME = "experiment_5_23"
-    gpu_id = 14
+
+    OPER_NAME = "experiment_6_10"
+    gpu_id = 0
     image_size = 128
     channel = 3
     hwc = [image_size, image_size, channel]
