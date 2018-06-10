@@ -452,46 +452,45 @@ class SG_GAN(object):
                         output_shape=[self.batch_size, self.output_size, self.output_size, sn], name='g_deconv_1_1'), scope='gen_in_1_1'))
 
             #Refined Residual Image learning
-            #g_deconv_1_1_x = tf.concat([g_deconv_1_1, x], axis=3)
-            x_tilde1 = conv2d(g_deconv_1_1, output_dim=self.channel, k_w=7, k_h=7, d_h=1, d_w=1, name='gen_conv_1_2')
+            g_deconv_1_1_x = tf.concat([g_deconv_1_1, x], axis=3)
+            x_tilde1 = conv2d(g_deconv_1_1_x, output_dim=self.channel, k_w=7, k_h=7, d_h=1, d_w=1, name='gen_conv_1_2')
 
             # for 2
             g_deconv_2_1 = tf.nn.relu(instance_norm(de_conv(g_deconv1,
                         output_shape=[self.batch_size, self.output_size, self.output_size, sn]
                                                             , name='g_deconv_2_1'), scope='gen_in_2_1'))
-            #g_deconv_2_1_x = tf.concat([g_deconv_2_1, x], axis=3)
-            x_tilde2 = conv2d(g_deconv_2_1, output_dim=self.channel, k_w=7, k_h=7, d_h=1, d_w=1, name='gen_conv_2_2')
+            g_deconv_2_1_x = tf.concat([g_deconv_2_1, x], axis=3)
+            x_tilde2 = conv2d(g_deconv_2_1_x, output_dim=self.channel, k_w=7, k_h=7, d_h=1, d_w=1, name='gen_conv_2_2')
 
             # for 3
             g_deconv_3_1 = tf.nn.relu(instance_norm(de_conv(g_deconv1, output_shape=[self.batch_size,
                                             self.output_size, self.output_size, sn], name='gen_deconv3_1'), scope='gen_in_3_1'))
-            #g_deconv_3_1_x = tf.concat([g_deconv_3_1, x], axis=3)
-
-            g_deconv_3_2 = conv2d(g_deconv_3_1, output_dim=32, k_w=3, k_h=3, d_h=1, d_w=1,
+            g_deconv_3_1_x = tf.concat([g_deconv_3_1, x], axis=3)
+            g_deconv_3_2 = conv2d(g_deconv_3_1_x, output_dim=32, k_w=3, k_h=3, d_h=1, d_w=1,
                               name='gen_conv_3_2')
             x_tilde3 = conv2d(g_deconv_3_2, output_dim=3, k_h=3, k_w=3, d_h=1, d_w=1, name='gen_conv_3_3')
 
             # for 4
             g_deconv_4_1 = tf.nn.relu(instance_norm(de_conv(g_deconv1, output_shape=[self.batch_size,
                                                                         self.output_size, self.output_size, sn], name='gen_deconv4_1'), scope='gen_in_4_1'))
-            #g_deconv_4_1_x = tf.concat([g_deconv_4_1, x], axis=3)
-            g_deconv_4_2 = conv2d(g_deconv_4_1, output_dim=32, k_w=3, k_h=3, d_h=1, d_w=1,
+            g_deconv_4_1_x = tf.concat([g_deconv_4_1, x], axis=3)
+            g_deconv_4_2 = conv2d(g_deconv_4_1_x, output_dim=32, k_w=3, k_h=3, d_h=1, d_w=1,
                               name='gen_conv_4_2')
             x_tilde4 = conv2d(g_deconv_4_2, output_dim=3, k_h=3, k_w=3, d_h=1, d_w=1, name='gen_conv_4_3')
 
             # for 5
             g_deconv_5_1 = tf.nn.relu(instance_norm(de_conv(g_deconv1, output_shape=[self.batch_size,
                                                                         self.output_size, self.output_size, sn], name='gen_deconv5_1'), scope='gen_in_5_1'))
-            #g_deconv_5_1_x = tf.concat([g_deconv_5_1, x], axis=3)
-            g_deconv_5_2 = conv2d(g_deconv_5_1, output_dim=32, k_w=3, k_h=3, d_h=1, d_w=1,
+            g_deconv_5_1_x = tf.concat([g_deconv_5_1, x], axis=3)
+            g_deconv_5_2 = conv2d(g_deconv_5_1_x, output_dim=32, k_w=3, k_h=3, d_h=1, d_w=1,
                               name='gen_conv_5_2')
             x_tilde5 = conv2d(g_deconv_5_2, output_dim=3, k_h=3, k_w=3, d_h=1, d_w=1, name='gen_conv_5_3')
 
             # for 6
             g_deconv_6_1 = tf.nn.relu(instance_norm(de_conv(g_deconv1, output_shape=[self.batch_size,
                                                                         self.output_size, self.output_size, sn], name='gen_deconv6_1'), scope='gen_in_6_1'))
-            #g_deconv_6_1_x = tf.concat([g_deconv_6_1, x], axis=3)
-            g_deconv_6_2 = conv2d(g_deconv_6_1, output_dim=32, k_w=3, k_h=3, d_h=1, d_w=1,
+            g_deconv_6_1_x = tf.concat([g_deconv_6_1, x], axis=3)
+            g_deconv_6_2 = conv2d(g_deconv_6_1_x, output_dim=32, k_w=3, k_h=3, d_h=1, d_w=1,
                               name='gen_conv_6_2')
             x_tilde6 = conv2d(g_deconv_6_2, output_dim=3, k_h=3, k_w=3, d_h=1, d_w=1, name='gen_conv_6_3')
 
@@ -499,16 +498,15 @@ class SG_GAN(object):
             g_deconv_7_1 = tf.nn.relu(instance_norm(de_conv(g_deconv1,
                         output_shape=[self.batch_size, self.output_size, self.output_size, sn], name='g_deconv_7_1'), scope='gen_in_7_1'))
 
-            #g_deconv_7_1_x = tf.concat([g_deconv_7_1, x], axis=3)
-            x_tilde7 = conv2d(g_deconv_7_1, output_dim=self.channel, k_w=7, k_h=7, d_h=1, d_w=1, name='gen_conv_7_2')
+            g_deconv_7_1_x = tf.concat([g_deconv_7_1, x], axis=3)
+            x_tilde7 = conv2d(g_deconv_7_1_x, output_dim=self.channel, k_w=7, k_h=7, d_h=1, d_w=1, name='gen_conv_7_2')
 
             # for 8
             g_deconv_8_1 = tf.nn.relu(instance_norm(de_conv(g_deconv1,
                         output_shape=[self.batch_size, self.output_size, self.output_size, sn]
                                                             , name='g_deconv_8_1'), scope='gen_in_8_1'))
-
-            #g_deconv_8_1_x = tf.concat([g_deconv_8_1, x], axis=3)
-            x_tilde8 = conv2d(g_deconv_8_1, output_dim=self.channel, k_w=7, k_h=7, d_h=1, d_w=1, name='gen_conv_8_2')
+            g_deconv_8_1_x = tf.concat([g_deconv_8_1, x], axis=3)
+            x_tilde8 = conv2d(g_deconv_8_1_x, output_dim=self.channel, k_w=7, k_h=7, d_h=1, d_w=1, name='gen_conv_8_2')
 
             return tf.nn.tanh(x_tilde1), tf.nn.tanh(x_tilde2), tf.nn.tanh(x_tilde3), \
                    tf.nn.tanh(x_tilde4), tf.nn.tanh(x_tilde5), tf.nn.tanh(x_tilde6), tf.nn.tanh(x_tilde7), tf.nn.tanh(x_tilde8)
