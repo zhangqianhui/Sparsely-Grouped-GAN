@@ -16,8 +16,9 @@ Introduction: Recently, Image-to-Image Translation (IIT) has made great progress
 
 - Clone this repo:
 ```bash
-git clone https://github.com/zhangqianhui/SG_GAN_tensorflow.git
-cd SG_GAN_tensorflow
+git clone https://github.com/zhangqianhui/Sparsely-Grouped-GAN.git
+cd Sparsely-Grouped-GAN
+
 ```
 - Download the CelebA dataset
 
