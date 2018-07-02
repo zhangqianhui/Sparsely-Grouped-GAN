@@ -1,5 +1,5 @@
 # Sparsely_Grouped_GAN tensorflow
-The code of paper "Sparsely Grouped Multi-task Generative Adversarial Networks for Facial Attribute Manipulation"
+The code of paper "Sparsely Grouped Multi-task Generative Adversarial Networks for Facial Attribute Manipulation"(ACMMM 2018 oral)
 
 ## Paper
 [Sparsely Grouped Multi-task Generative Adversarial Networks for Facial Attribute Manipulation](https://arxiv.org/abs/1805.07509) 
