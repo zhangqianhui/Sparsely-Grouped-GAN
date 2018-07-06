@@ -61,6 +61,17 @@ python main.py
 
 <p align="center"><img width="100%" src="img/exper_2.JPG" /></p>
 
+###Citation
+
+`@inproceedings{jichao2018,
+ author = {Jichao, Zhang and Yezhi, Shu and Songhua, Xu and Fan, Zhong and Xueying, Qin},
+ title = {Sparsely Grouped Multi-task Generative Adversarial Networks for Facial Attribute Manipulation},
+ booktitle={ACM Multimedia},
+ year={2018},
+ organization={ACM}
+}`
+
+
 ## Reference code
 
 [StarGAN Pytorch](https://github.com/yunjey/StarGAN)
