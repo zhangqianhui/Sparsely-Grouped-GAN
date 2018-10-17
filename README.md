@@ -10,7 +10,6 @@ The code of paper "Sparsely Grouped Multi-task Generative Adversarial Networks f
 ![](img/real5.png)
 ![](img/real6.png)
 ![](img/real10.png)
-![](img/real12.png)
 
 -----------------------------
 ![](img/age1.gif)
@@ -20,7 +19,6 @@ The code of paper "Sparsely Grouped Multi-task Generative Adversarial Networks f
 ![](img/age5.gif)
 ![](img/age6.gif)
 ![](img/age10.gif)
-![](img/age12.gif)
 
 
 
