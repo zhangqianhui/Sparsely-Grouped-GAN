@@ -4,17 +4,16 @@ The code of paper "Sparsely Grouped Multi-task Generative Adversarial Networks f
 # Facial Progressive and Progressive results of SG-GAN
 
 -----------------------------
-![Input](img/real1.png)
-![Input](img/real2.png)
-![Input](img/real3.png)
-![Input](img/real4.png)
-
+![](img/real1.png)
+![](img/real2.png)
+![](img/real3.png)
+![](img/real4.png)
 
 -----------------------------
-![screenshot](img/age1.gif)
-![screenshot](img/age2.gif)
-![screenshot](img/age3.gif)
-![screenshot](img/age4.gif)
+![](img/age1.gif)
+![](img/age2.gif)
+![](img/age3.gif)
+![](img/age4.gif)
 
 ## Paper
 [Sparsely Grouped Multi-task Generative Adversarial Networks for Facial Attribute Manipulation](https://arxiv.org/abs/1805.07509)(ACMMM 2018 oral)
