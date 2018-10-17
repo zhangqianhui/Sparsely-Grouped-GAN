@@ -1,7 +1,7 @@
 # Sparsely_Grouped_GAN tensorflow
 The code of paper "Sparsely Grouped Multi-task Generative Adversarial Networks for Facial Attribute Manipulation"
 
-# Face Progressive and Progressive
+# Face Progression and Regression
 
 ![](img/real1.png)
 ![](img/real2.png)
@@ -19,8 +19,6 @@ The code of paper "Sparsely Grouped Multi-task Generative Adversarial Networks f
 ![](img/age5.gif)
 ![](img/age6.gif)
 ![](img/age10.gif)
-
-
 
 
 ## Paper
@@ -82,6 +80,10 @@ python main.py
 ### For unbalanced Attribute
 
 <p align="center"><img width="100%" src="img/exper_2.JPG" /></p>
+
+## For Age Progression and Regression
+
+You can download and use the [UTKFace dataset](aligned & cropped)(https://susanqq.github.io/UTKFace/) for training. Of course, the model should have be modified from binary attributes translation to multiple attributes translation.
 
 ### Citation
 
