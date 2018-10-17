@@ -1,6 +1,11 @@
 # Sparsely_Grouped_GAN tensorflow
 The code of paper "Sparsely Grouped Multi-task Generative Adversarial Networks for Facial Attribute Manipulation"
 
+# Facial Progressive and Progressive results of SG-GAN
+
+![screenshot](img/real.png)
+![screenshot](img/age1.gif)
+
 ## Paper
 [Sparsely Grouped Multi-task Generative Adversarial Networks for Facial Attribute Manipulation](https://arxiv.org/abs/1805.07509)(ACMMM 2018 oral)
 
