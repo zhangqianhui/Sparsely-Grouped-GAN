@@ -1,7 +1,7 @@
 # Sparsely_Grouped_GAN tensorflow
 The code of paper "Sparsely Grouped Multi-task Generative Adversarial Networks for Facial Attribute Manipulation"
 
-# Face Progression and Regression
+# Face Age Progression and Regression
 
 ![](img/real1.png)
 ![](img/real2.png)
