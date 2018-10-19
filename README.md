@@ -99,10 +99,10 @@ You can download and use the [UTKFace dataset](aligned & cropped)(https://susanq
 
 ## Reference code
 
-[StarGAN Pytorch](https://github.com/yunjey/StarGAN)
+- [StarGAN Pytorch](https://github.com/yunjey/StarGAN)
 
-[GeneGAN tensorflow](https://github.com/Prinsphield/GeneGAN)
+- [GeneGAN tensorflow](https://github.com/Prinsphield/GeneGAN)
 
-[DCGAN tensorflow](https://github.com/carpedm20/DCGAN-tensorflow)
+- [DCGAN tensorflow](https://github.com/carpedm20/DCGAN-tensorflow)
 
-[Spectral Norm tensorflow](https://github.com/taki0112/Spectral_Normalization-Tensorflow)
+- [Spectral Norm tensorflow](https://github.com/taki0112/Spectral_Normalization-Tensorflow)
