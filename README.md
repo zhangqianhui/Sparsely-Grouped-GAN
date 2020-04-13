@@ -68,12 +68,12 @@ You can download and use the [UTKFace dataset](aligned & cropped)(https://susanq
 ### Citation
 
 ```
-@inproceedings{jichao2018,
- author = {Jichao, Zhang and Yezhi, Shu and Songhua, Xu and Fan, Zhong and Xueying, Qin},
- title = {Sparsely Grouped Multi-task Generative Adversarial Networks for Facial Attribute Manipulation},
- booktitle={ACM Multimedia},
- year={2018},
- organization={ACM}
+@inproceedings{zhang2018sparsely,
+  title={Sparsely grouped multi-task generative adversarial networks for facial attribute manipulation},
+  author={Zhang, Jichao and Shu, Yezhi and Xu, Songhua and Cao, Gongze and Zhong, Fan and Liu, Meng and Qin, Xueying},
+  booktitle={Proceedings of the 26th ACM international conference on Multimedia},
+  pages={392--401},
+  year={2018}
 }
 ```
 
