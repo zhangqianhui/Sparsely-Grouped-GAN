@@ -6,16 +6,9 @@
 > [Jichao Zhang]\*, [Yezhi Shu]\*, [Songhua Xu](https://scholar.google.com/citations?user=hVDwM04AAAAJ&hl=en)\*, [Gongze Cao](https://zardinality.github.io/)\*, [Fan Zhong](http://irc.cs.sdu.edu.cn/info/1007/1365.htm)\*, [Meng Liu](https://scholar.google.com/citations?user=tI_cTV8AAAAJ&hl=en)\*, [Xueying Qin](http://irc.cs.sdu.edu.cn/info/1007/1368.htm)<br>
 > In ACMMM 2018 Oral.<br>
 
-> Paper: https://arxiv.org/abs/1912.01865<br>
-> Video: https://youtu.be/0EVh5Ki4dIY<br>
+> Paper: https://arxiv.org/abs/1805.07509<br>
 
-> **Abstract:** *A good image-to-image translation model should learn a mapping between different visual domains while satisfying the following properties: 1) diversity of generated images and 2) scalability over multiple domains. Existing methods address either of the issues, having limited diversity or multiple models for all domains. We propose StarGAN v2, a single framework that tackles both and shows significantly improved results over the baselines. Experiments on CelebA-HQ and a new animal faces dataset (AFHQ) validate our superiority in terms of visual quality, diversity, and scalability. To better assess image-to-image translation models, we release AFHQ, high-quality animal faces with large inter- and intra-domain variations. The code, pre-trained models, and dataset are available at clovaai/stargan-v2.*
-
-
-## Paper
-[Sparsely Grouped Multi-task Generative Adversarial Networks for Facial Attribute Manipulation](https://arxiv.org/abs/1805.07509)(ACMMM 2018 oral)
-
-Introduction: Recently, Image-to-Image Translation (IIT) has made great progress in enabling image style transfer and manipulation of semantic context in an image. However, existing approaches require exhaustive labelling of training data, which is labor demanding, difficult to scale up, and hard to adapt to a new domain. To overcome such a key limitation, we propose sparsely grouped generative adversarial networks(SG-GAN), a novel approach that can perform image translation in the sparsely grouped datasets, which most training data are mixed and just a few are labelled. SG-GAN with one-input multiple output architecture can be used for the translations among multiple groups using only a single trained model. As a case study for experimentally validating the advantages of our model, we apply the algorithm to tackle a series of tasks of attribute manipulation for facial images. Experiment results show that SG-GAN can achieve competitive results compared with previous state-of-the-art methods on adequately labelled datasets while attaining the superior quality of image translation results on sparsely grouped datasets where most data is mixed and only small parts are labelled. 
+> **Abstract:** *Recently, Image-to-Image Translation (IIT) has made great progress in enabling image style transfer and manipulation of semantic context in an image. However, existing approaches require exhaustive labelling of training data, which is labor demanding, difficult to scale up, and hard to adapt to a new domain. To overcome such a key limitation, we propose sparsely grouped generative adversarial networks(SG-GAN), a novel approach that can perform image translation in the sparsely grouped datasets, which most training data are mixed and just a few are labelled. SG-GAN with one-input multiple output architecture can be used for the translations among multiple groups using only a single trained model. As a case study for experimentally validating the advantages of our model, we apply the algorithm to tackle a series of tasks of attribute manipulation for facial images. Experiment results show that SG-GAN can achieve competitive results compared with previous state-of-the-art methods on adequately labelled datasets while attaining the superior quality of image translation results on sparsely grouped datasets where most data is mixed and only small parts are labelled..*
 
 ### Citation
 
@@ -28,8 +21,6 @@ Introduction: Recently, Image-to-Image Translation (IIT) has made great progress
   year={2018}
 }
 ```
-
-
 
 ## Dependencies
 * [Python 2.7](https://www.python.org/download/releases/2.7/)
@@ -83,11 +74,6 @@ python main.py
 ### For unbalanced Attribute
 
 <p align="center"><img width="100%" src="img/exper_2.JPG" /></p>
-
-## For Age Progression and Regression
-
-You can download and use the [UTKFace dataset](aligned & cropped)(https://susanqq.github.io/UTKFace/) for training. Of course, the model should have be modified from binary attributes translation to multiple attributes translation.
-
 
 ## Reference code
 
