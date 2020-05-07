@@ -1,6 +1,16 @@
 ## SGGAN - Official Tensorflow Implementation
 
-The code of paper "Sparsely Grouped Multi-task Generative Adversarial Networks for Facial Attribute Manipulation
+<p align="center"><img width="100%" src="img/intro.JPG" /></p>
+
+> **Sparsely Grouped Multi-task Generative Adversarial Networks for Facial Attribute Manipulation**<br>
+> [Jichao Zhang]\*, [Yezhi Shu]\*, [Songhua Xu](https://scholar.google.com/citations?user=hVDwM04AAAAJ&hl=en)\*, [Gongze Cao](https://zardinality.github.io/)\*, [Fan Zhong](http://irc.cs.sdu.edu.cn/info/1007/1365.htm)\*, [Meng Liu](https://scholar.google.com/citations?user=tI_cTV8AAAAJ&hl=en)\*, [Xueying Qin](http://irc.cs.sdu.edu.cn/info/1007/1368.htm)<br>
+> In ACMMM 2018 Oral.<br>
+
+> Paper: https://arxiv.org/abs/1912.01865<br>
+> Video: https://youtu.be/0EVh5Ki4dIY<br>
+
+> **Abstract:** *A good image-to-image translation model should learn a mapping between different visual domains while satisfying the following properties: 1) diversity of generated images and 2) scalability over multiple domains. Existing methods address either of the issues, having limited diversity or multiple models for all domains. We propose StarGAN v2, a single framework that tackles both and shows significantly improved results over the baselines. Experiments on CelebA-HQ and a new animal faces dataset (AFHQ) validate our superiority in terms of visual quality, diversity, and scalability. To better assess image-to-image translation models, we release AFHQ, high-quality animal faces with large inter- and intra-domain variations. The code, pre-trained models, and dataset are available at clovaai/stargan-v2.*
+
 
 ## Paper
 [Sparsely Grouped Multi-task Generative Adversarial Networks for Facial Attribute Manipulation](https://arxiv.org/abs/1805.07509)(ACMMM 2018 oral)
@@ -19,7 +29,7 @@ Introduction: Recently, Image-to-Image Translation (IIT) has made great progress
 }
 ```
 
-<p align="center"><img width="100%" src="img/intro.JPG" /></p>
+
 
 ## Dependencies
 * [Python 2.7](https://www.python.org/download/releases/2.7/)
