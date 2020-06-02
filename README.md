@@ -38,7 +38,7 @@ cd Sparsely-Grouped-GAN
 ```
 - Download the CelebA dataset
 
-You can download the [CelebA dataset](aligned & cropped)(https://www.dropbox.com/sh/8oqt9vytwxb3s4r/AAB06FXaQRUNtjW9ntaoPGvCa?dl=0) 
+You can download the [CelebA dataset](https://www.dropbox.com/sh/8oqt9vytwxb3s4r/AAB06FXaQRUNtjW9ntaoPGvCa?dl=0) 
 and unzip CelebA into a directory. 
 
  Just like
@@ -66,12 +66,16 @@ python train.py --exper_name='log20_5_1' --gpu_id='0' --loss_type='wgan_gp' --n_
 ```
 - Test the model
 ```bash
-python test.py --exper_name='log20_5_1' --gpu_id='0' --loss_type='wgan_gp'
+python test.py --exper_name='log20_5_1' --gpu_id='0' 
 ```
 
 Or Using scripts for training 
 ```bash
 bash scripts/train_log20_5_1.sh
+```
+Using scripts for testing and pretained model can be downloaded [Pretrained Model](https://drive.google.com/file/d/1GYyGGQm06ahI0V4mBzSCaT1Fh4kzHb76/view?usp=sharing) 
+```bash
+bash scripts/test_log20_5_1.sh
 ```
 
 ## Experiment Result 
