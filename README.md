@@ -38,7 +38,7 @@ cd Sparsely-Grouped-GAN
 ```
 - Download the CelebA dataset
 
-You can download the [CelebA dataset](aligned & cropped)(https://www.dropbox.com/sh/8oqt9vytwxb3s4r/AAB06FXaQRUNtjW9ntaoPGvCa?dl=0) 
+You can download the [CelebA dataset](https://www.dropbox.com/sh/8oqt9vytwxb3s4r/AAB06FXaQRUNtjW9ntaoPGvCa?dl=0) 
 and unzip CelebA into a directory. 
 
  Just like
