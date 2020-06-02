@@ -23,8 +23,10 @@
 ```
 
 ## Dependencies
-* [Python 2.7](https://www.python.org/download/releases/2.7/)
-* [Tensorflow 1.4+](https://github.com/tensorflow/tensorflow)
+```bash
+pip install -r requirments.txt
+
+```
 
 ## Usage
 
@@ -45,7 +47,7 @@ and unzip CelebA into a directory.
 ---------------------------------------------
 
 The training data folder should look like : 
-<base_dir/celebA/>
+<base_dir/images/>
                 |--image1
                 |--image2
                 |--image3
@@ -56,13 +58,20 @@ list_attr_celeba.txt
 ---------------------------------------------
 ~~~
 
-- Train the model using the default parameter
+You can edit label_dir and data_dir in Baseoptions.txt and use the path for your CelebA dataset.
+
+- Train the model using command line with python 
 ```bash
-python main.py 
+python train.py --exper_name='log20_5_1' --gpu_id='0' --loss_type='wgan_gp' --n_critic=5 --lam_c=10
 ```
-- Test the model by changing OPER_FLAG in config.py from 0 to 1.
+- Test the model
 ```bash
-python main.py 
+python test.py --exper_name='log20_5_1' --gpu_id='0' --loss_type='wgan_gp'
+```
+
+Or Using scripts for training 
+```bash
+bash scripts/train_log20_5_1.sh
 ```
 
 ## Experiment Result 
