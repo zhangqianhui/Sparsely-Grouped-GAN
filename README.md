@@ -3,7 +3,7 @@
 <p align="center"><img width="100%" src="img/intro.JPG" /></p>
 
 > **Sparsely Grouped Multi-task Generative Adversarial Networks for Facial Attribute Manipulation**<br>
-> Jichao Zhang, Yezhi Shu, [Songhua Xu](https://scholar.google.com/citations?user=hVDwM04AAAAJ&hl=en), [Gongze Cao](https://zardinality.github.io/), [Fan Zhong](http://irc.cs.sdu.edu.cn/info/1007/1365.htm), [Meng Liu](https://scholar.google.com/citations?user=tI_cTV8AAAAJ&hl=en), [Xueying Qin](http://irc.cs.sdu.edu.cn/info/1007/1368.htm)<br>
+> Jichao Zhang, Yezhi Shu, [Songhua Xu](https://scholar.google.com/citations?user=hVDwM04AAAAJ&hl=en), [Gongze Cao](https://zardinality.github.io/), [Fan Zhong](http://irc.cs.sdu.edu.cn/info/1007/1365.htm), [Meng Liu](https://scholar.google.com/citations?user=tI_cTV8AAAAJ&hl=en), [Xueying Qin](http://irc.cs.sdu.edu.cn/info/1030/1371.htm)<br>
 > In ACMMM 2018 Oral.<br>
 
 > Paper: https://arxiv.org/abs/1805.07509<br>
