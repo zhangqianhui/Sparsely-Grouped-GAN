@@ -67,6 +67,7 @@ python main.py
 
 ## Experiment Result 
 
+lign="center"><img width="100%" src="img/results.jpeg" /></p>
 
 ## Reference code
 
