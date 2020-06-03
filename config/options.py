@@ -15,9 +15,9 @@ class BaseOptions():
         to_balance_att_names = ['Brown_Hair', 'Smiling', 'No_Beard', 'Young']
         parser.add_argument('--to_balance_att_names', nargs='+', default=to_balance_att_names)
         parser.add_argument('--data_dir', type=str,
-                          default='/data0/jzhang/dataset/celeba/images', help='path to images')
+                          default='./dataset/celeba/images', help='path to images')
         parser.add_argument('--label_dir', type=str,
-            default='/data0/jzhang/dataset/celeba/list_attr_celeba.txt', help='path to images')
+            default='./dataset/celeba/list_attr_celeba.txt', help='path to images')
         # parser.add_argument('--label_dir', type=str,
         #     default='/remote-home/source/remote_desktop/chengjingjing/PycharmProjects/CompHgan/utils/CelebA-HQ/CelebA-HQ_attribute_age_v3.txt',
         #                     help='path to images')
