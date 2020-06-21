@@ -80,7 +80,7 @@ bash scripts/test_log20_5_1.sh
 
 ## Experiment Result 
 
-<lign="center"><img width="100%" src="img/results.jpeg" /></p>
+<p align="center"><img width="100%" src="img/results.jpeg" /></p>
 
 ## Reference code
 
