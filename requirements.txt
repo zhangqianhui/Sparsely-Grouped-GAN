@@ -14,7 +14,7 @@ mkl-random==1.1.0
 mkl-service==2.3.0
 numpy==1.18.1
 opencv-python==4.2.0.34
-Pillow==7.1.1
+Pillow==9.0.1
 protobuf==3.11.4
 PySocks==1.7.1
 requests==2.23.0
