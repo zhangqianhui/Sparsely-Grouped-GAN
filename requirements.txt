@@ -12,7 +12,7 @@ Markdown==3.1.1
 mkl-fft==1.0.15
 mkl-random==1.1.0
 mkl-service==2.3.0
-numpy==1.18.1
+numpy==1.22.0
 opencv-python==4.2.0.34
 Pillow==9.0.1
 protobuf==3.11.4
